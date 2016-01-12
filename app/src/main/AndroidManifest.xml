@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.larueinfo.alignlabsbenin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:name=".setup.App"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PeopleFragment"
+            android:label="@string/title_activity_people"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.larueinfo.alignlabsbenin.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".ActualiteFragment"
+            android:label="@string/title_activity_actualite"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.larueinfo.alignlabsbenin.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".FaitsDiversFragment"
+            android:label="@string/title_activity_faits_divers"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.larueinfo.alignlabsbenin.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".Single.SinglePeopleActivity"
+            android:label="@string/title_activity_single_people"
+            android:parentActivityName=".ActualiteFragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Single.SingleActualiteActivity"
+            android:label="@string/title_activity_single_actualite"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.larueinfo.alignlabsbenin.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".Single.SingleFaitsDiversActivity"
+            android:label="@string/title_activity_single_faits_divers"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.larueinfo.alignlabsbenin.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_actualite"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>
