@@ -4,14 +4,12 @@
     tools:context="dev.larueinfo.alignlabsbenin.HomeActivity">
     <item
         android:id="@+id/help"
-        android:orderInCategory="100"
-        android:title=""
+        android:title="Aide"
         android:icon="@android:drawable/ic_menu_help"
         app:showAsAction="never" />
     <item
         android:id="@+id/info"
-        android:title=""
-        android:orderInCategory="100"
+        android:title="A propos"
         android:icon="@android:drawable/ic_menu_info_details"
         app:showAsAction="never" />
 </menu>
