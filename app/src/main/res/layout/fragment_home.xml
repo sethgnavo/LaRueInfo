@@ -7,7 +7,7 @@
 
     <ViewFlipper
         android:id="@+id/view_flipper"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2">
 
@@ -17,8 +17,8 @@
 
             <ImageView
                 android:id="@+id/viewer1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop" />
@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/viewer2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop" />
@@ -53,8 +53,8 @@
 
             <ImageView
                 android:id="@+id/viewer3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop" />
@@ -68,12 +68,10 @@
 
     <ListView
         android:id="@+id/newsListView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:divider="#0fff"
-        android:dividerHeight="0dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp" />
+        android:dividerHeight="0dp" />
 
 </LinearLayout>
