@@ -3,6 +3,10 @@ package dev.larueinfo.alignlabsbenin.Models;
 /**
  * @author Seth-Pharès Gnavo
  */
+
+/*
+ * Cette classe n'est pas encore implémentée. Elle va remplacer la classe Model dans les rochains builds.
+ */
 public class Article {
     private String articleTitle;
     private String articleDescription;
@@ -11,6 +15,9 @@ public class Article {
     private String authorName;
     private String sourceName;
     private long issueTime;
+
+    public Article() {
+    }
 
     public String getArticleTitle() {
         return articleTitle;
