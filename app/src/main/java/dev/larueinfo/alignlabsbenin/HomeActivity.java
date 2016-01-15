@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        Typeface custFace = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
+        Typeface custFace = Typeface.createFromAsset(getAssets(), "fonts/silent_reaction.ttf");
         toolBarTitle = (TextView) findViewById(R.id.toolbar_title);
         toolBarTitle.setTypeface(custFace);
     }
