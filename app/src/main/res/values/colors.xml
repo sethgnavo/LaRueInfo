@@ -12,4 +12,8 @@
     <color name="tab_text_selected">#303F9F</color>
     <color name="white">#fff</color>
     <color name="tab_indicator_color">#777</color>
+
+    <color name="colorPrimary2">#f7f7f7</color>
+    <color name="colorPrimaryDark2">#d32f2f</color>
+    <color name="colorAccent2">#ff8a80</color>
 </resources>
