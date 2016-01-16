@@ -9,7 +9,7 @@
         android:id="@+id/view_flipper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="3">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -70,7 +70,7 @@
         android:id="@+id/newsListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="7"
         android:divider="#0fff"
         android:dividerHeight="0dp" />
 
