@@ -104,8 +104,8 @@ public class SingleActualiteActivity extends AppCompatActivity {
                             .error(android.R.drawable.ic_menu_view)
                             .resize(120, 120)
                             .into(img_pTitre1);
-                }else {System.out.println("Gotta");}
-                if (post.getImg_pTitre2() != null) {
+                }
+                if (post.getImg_pTitre2() != "") {
                     Picasso.with(getApplication())
                             .load(post.getImg_pTitre2())
                             .placeholder(android.R.drawable.ic_menu_view)
@@ -113,7 +113,7 @@ public class SingleActualiteActivity extends AppCompatActivity {
                             .resize(120, 120)
                             .into(img_pTitre2);
                 }
-                if (post.getImg_pTitre3() != null) {
+                if (post.getImg_pTitre3() != "") {
                     Picasso.with(getApplication())
                             .load(post.getImg_pTitre3())
                             .placeholder(android.R.drawable.ic_menu_view)
@@ -121,22 +121,22 @@ public class SingleActualiteActivity extends AppCompatActivity {
                             .resize(120, 120)
                             .into(img_pTitre3);
                 }
-                if (post.getptitre1() != null) {
+                if (post.getptitre1() != "") {
                     pTitre1.setText(post.getptitre1());
                 }
-                if (post.getptitre2() != null) {
+                if (post.getptitre2() != "") {
                     pTitre2.setText(post.getptitre2());
                 }
-                if (post.getptitre3() != null) {
+                if (post.getptitre3() != "") {
                     pTitre3.setText(post.getptitre3());
                 }
-                if (post.getDesc_pTitre1() != null) {
+                if (post.getDesc_pTitre1() != "") {
                     desc_pTitre1.setText(post.getDesc_pTitre1());
                 }
-                if (post.getDesc_pTitre2() != null) {
+                if (post.getDesc_pTitre2() != "") {
                     desc_pTitre2.setText(post.getDesc_pTitre2());
                 }
-                if (post.getDesc_pTitre3() != null) {
+                if (post.getDesc_pTitre3() != "") {
                     desc_pTitre3.setText(post.getDesc_pTitre3());
                 }
                 share = post.getTitre().toString();
