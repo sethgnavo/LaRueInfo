@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
             android:theme="@style/MyCustomToolbarTheme">
 
             <TextView
@@ -40,7 +39,7 @@
             android:background="@color/tab_background" />
         <View
             android:layout_width="match_parent"
-            android:background="@color/md_divider_white"
+            android:background="@color/md_divider_black"
             android:layout_height="1dp" />
 
     </android.support.design.widget.AppBarLayout>
