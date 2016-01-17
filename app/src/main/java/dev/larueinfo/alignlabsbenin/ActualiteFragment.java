@@ -21,7 +21,7 @@ import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.Models.Model;
+import dev.larueinfo.alignlabsbenin.Models.Article;
 import dev.larueinfo.alignlabsbenin.Single.SingleActualiteActivity;
 
 public class ActualiteFragment extends Fragment {
@@ -38,12 +38,6 @@ public class ActualiteFragment extends Fragment {
     public ImageView img1,img2,img3;
     public TextView txt1,txt2,txt3;
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //Firebase.setAndroidContext(getActivity());
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,17 +87,17 @@ public class ActualiteFragment extends Fragment {
         txt1 = (TextView)view.findViewById(R.id.text_pub_1);
         txt1.setText("Vos Pub ici qui défilent ! Contacter le 64967477");
         list = (ListView) view.findViewById(R.id.newsListView);
-        listAdapter = new FirebaseListAdapter<Model>(getActivity(), Model.class, R.layout.items, backend) {
+        listAdapter = new FirebaseListAdapter<Article>(getActivity(), Article.class, R.layout.items, backend) {
             @Override
-            protected void populateView(View view, Model o) {
+            protected void populateView(View view, Article o) {
                 ImageView img = (ImageView) view.findViewById(R.id.avatarInfo);
                 Picasso.with(getActivity())
-                        .load(o.getImagePrincipale())
+                        .load(o.getGraphicDescription())
                         .placeholder(android.R.drawable.ic_menu_view)
                         .error(android.R.drawable.ic_menu_view)
                         .into(img);
-                ((TextView) view.findViewById(R.id.titreInfoS)).setText(o.getTitre());
-                ((TextView) view.findViewById(R.id.grdTitreInfo)).setText(o.getGrdTitre());
+                ((TextView) view.findViewById(R.id.titreInfoS)).setText(o.getArticleTitle());
+                ((TextView) view.findViewById(R.id.grdTitreInfo)).setText(o.getArticleDescription());
                 TextView time = (TextView) view.findViewById(R.id.dateInfo);
                 //final CharSequence date_post = DateUtils.getRelativeTimeSpanString(
                 //        Long.parseLong(String.valueOf(o.getTime())),

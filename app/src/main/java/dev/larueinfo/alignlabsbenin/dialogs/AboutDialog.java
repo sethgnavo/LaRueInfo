@@ -26,7 +26,7 @@ public class AboutDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         return new MaterialDialog.Builder(getActivity())
-                .iconRes(R.mipmap.ic_launcher)
+                .iconRes(R.drawable.ic_launcher)
                 .title("A propos")
                 .content(Html.fromHtml(getString(R.string.dialog_about)))
                 .positiveText("ok")

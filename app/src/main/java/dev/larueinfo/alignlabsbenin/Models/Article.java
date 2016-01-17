@@ -1,5 +1,7 @@
 package dev.larueinfo.alignlabsbenin.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * @author Seth-Pharès Gnavo
  */
@@ -7,6 +9,7 @@ package dev.larueinfo.alignlabsbenin.Models;
 /*
  * Cette classe n'est pas encore implémentée. Elle va remplacer la classe Model dans les rochains builds.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Article {
     private String articleTitle;
     private String articleDescription;
