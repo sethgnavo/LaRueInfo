@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,16 +15,14 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.Models.Model;
+import dev.larueinfo.alignlabsbenin.Models.Article;
 import dev.larueinfo.alignlabsbenin.PeopleFragment;
 import dev.larueinfo.alignlabsbenin.R;
 
 public class SinglePeopleActivity extends AppCompatActivity {
     private Firebase backend;
-    TextView titre,grdTitre,time,auteur,desc,pTitre1,desc_pTitre1,pTitre2,desc_pTitre2,pTitre3,desc_pTitre3,source;
-    ImageView imagePrincipale,img_pTitre1,img_pTitre2,img_pTitre3;
+    TextView  articleTitle, rawHtmlContent,authorName,sourceName,issueTime;
     String share;
     String ti;
 
@@ -60,90 +56,24 @@ public class SinglePeopleActivity extends AppCompatActivity {
         backend.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Model post = snapshot.getValue(Model.class);
-                titre = (TextView) findViewById(R.id.titreInfoS); titre.setTypeface(custFace);
-                grdTitre = (TextView) findViewById(R.id.grdTitre);grdTitre.setTypeface(custFace);
-                desc = (TextView) findViewById(R.id.descinfoS);desc.setTypeface(custFace);
-                auteur = (TextView) findViewById(R.id.auteurInfo);auteur.setTypeface(custFace);
-                time = (TextView) findViewById(R.id.dateInfo);
-                pTitre1 = (TextView) findViewById(R.id.pTitre1);pTitre1.setTypeface(custFace);
-                pTitre2 = (TextView) findViewById(R.id.pTitre2);pTitre2.setTypeface(custFace);
-                pTitre3 = (TextView) findViewById(R.id.pTitre3);pTitre3.setTypeface(custFace);
-                desc_pTitre1 = (TextView) findViewById(R.id.desc_pTitre1);desc_pTitre1.setTypeface(custFace);
-                desc_pTitre2 = (TextView) findViewById(R.id.desc_pTitre2);desc_pTitre2.setTypeface(custFace);
-                desc_pTitre3 = (TextView) findViewById(R.id.desc_pTitre3);desc_pTitre3.setTypeface(custFace);
-                source = (TextView) findViewById(R.id.sourceInfoS);
-                //time = (TextView) findViewById(R.id.dateInfo);
+                Article post = snapshot.getValue(Article.class);
+                articleTitle = (TextView) findViewById(R.id.article_title);
+                rawHtmlContent = (TextView) findViewById(R.id.raw_html_content);
+                authorName = (TextView) findViewById(R.id.author_name);
+                sourceName = (TextView) findViewById(R.id.source_name);
+                issueTime = (TextView) findViewById(R.id.issue_time);
 
+                //time setup
+                CharSequence charTtime = DateUtils.getRelativeTimeSpanString(
+                        Long.parseLong(String.valueOf(post.getIssueTime())),
+                        System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 
-                imagePrincipale = (ImageView) findViewById(R.id.imageInfoS);
-                img_pTitre1 = (ImageView) findViewById(R.id.img_pTitre1);
-                img_pTitre2 = (ImageView) findViewById(R.id.img_pTitre2);
-                img_pTitre3 = (ImageView) findViewById(R.id.img_pTitre3);
-
-                grdTitre.setText(post.getGrdTitre());
-                titre.setText(post.getTitre());
-                ti = post.getTitre();
-                getSupportActionBar().setTitle("Actualités Peoples");
-                desc.setText(post.getDesc());
-                auteur.setText(post.getAuteur());
-                source.setText(post.getSource());
-                if (post.getTime() != null) {
-                    CharSequence date_post_xago = DateUtils.getRelativeTimeSpanString(
-                            Long.parseLong(String.valueOf(post.getTime())),
-                            System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-                    time.setText(date_post_xago);
-                }
-                Picasso.with(getApplication())
-                        .load(post.getImagePrincipale())
-                        .placeholder(android.R.drawable.ic_menu_view)
-                        .error(android.R.drawable.ic_menu_view)
-                        .resize(120, 120)
-                        .into(imagePrincipale);
-
-                if (post.getImg_pTitre1() != null) {
-                    Picasso.with(getApplication())
-                            .load(post.getImg_pTitre1())
-                            .placeholder(android.R.drawable.ic_menu_view)
-                            .error(android.R.drawable.ic_menu_view)
-                            .resize(120, 120)
-                            .into(img_pTitre1);
-                }
-                if (post.getImg_pTitre2() != "") {
-                    Picasso.with(getApplication())
-                            .load(post.getImg_pTitre2())
-                            .placeholder(android.R.drawable.ic_menu_view)
-                            .error(android.R.drawable.ic_menu_view)
-                            .resize(120, 120)
-                            .into(img_pTitre2);
-                }
-                if (post.getImg_pTitre3() != "") {
-                    Picasso.with(getApplication())
-                            .load(post.getImg_pTitre3())
-                            .placeholder(android.R.drawable.ic_menu_view)
-                            .error(android.R.drawable.ic_menu_view)
-                            .resize(120, 120)
-                            .into(img_pTitre3);
-                }
-                if(post.getptitre1() != ""){
-                    pTitre1.setText(post.getptitre1());
-                }
-                if(post.getptitre2() != ""){
-                    pTitre2.setText(post.getptitre2());
-                }
-                if(post.getptitre3() != ""){
-                    pTitre3.setText(post.getptitre3());
-                }
-                if (post.getDesc_pTitre1()!= ""){
-                    desc_pTitre1.setText(Html.fromHtml(post.getDesc_pTitre1()));
-                }
-                if (post.getDesc_pTitre2()!= ""){
-                    desc_pTitre2.setText(Html.fromHtml(post.getDesc_pTitre2()));
-                }
-                if (post.getDesc_pTitre3()!= ""){
-                    desc_pTitre3.setText(Html.fromHtml(post.getDesc_pTitre3()));
-                }
-                share = post.getTitre().toString();
+                articleTitle.setText(post.getArticleTitle());
+//                rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
+                authorName.setText(post.getAuthorName());
+                sourceName.setText(post.getSourceName());
+                issueTime.setText(charTtime);
+                share = post.getArticleTitle();
             }
 
             @Override

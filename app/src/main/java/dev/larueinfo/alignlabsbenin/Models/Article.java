@@ -18,6 +18,8 @@ public class Article {
     private String authorName;
     private String sourceName;
     private long issueTime;
+    private long stackId;
+
 
     public Article() {
     }
@@ -76,5 +78,13 @@ public class Article {
 
     public void setIssueTime(long issueTime) {
         this.issueTime = issueTime;
+    }
+
+    public long getStackId() {
+        return stackId;
+    }
+
+    public void setStackId(long stackId) {
+        this.stackId = stackId;
     }
 }

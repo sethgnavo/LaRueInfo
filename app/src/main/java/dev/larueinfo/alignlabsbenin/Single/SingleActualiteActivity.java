@@ -21,9 +21,7 @@ import dev.larueinfo.alignlabsbenin.R;
 
 public class SingleActualiteActivity extends AppCompatActivity {
     private Firebase backend;
-   // TextView titre, grdTitre, time, auteur, desc, pTitre1, desc_pTitre1, pTitre2, desc_pTitre2, pTitre3, desc_pTitre3, source;
-   TextView  articleTitle, rawHtmlContent,authorName,sourceName,issueTime;
-   // ImageView imagePrincipale, img_pTitre1, img_pTitre2, img_pTitre3;
+    TextView articleTitle, rawHtmlContent, authorName, sourceName, issueTime;
     String share;
     String ti;
 
@@ -166,6 +164,7 @@ public class SingleActualiteActivity extends AppCompatActivity {
                 authorName.setText(post.getAuthorName());
                 sourceName.setText(post.getSourceName());
                 issueTime.setText(charTtime);
+                share = post.getArticleTitle();
             }
 
             @Override
