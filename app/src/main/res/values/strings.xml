@@ -5,23 +5,24 @@
     <string name="title_activity_people">Actualités People</string>
     <string name="title_activity_actualite">Actualités</string>
     <string name="title_activity_faits_divers">Faits Divers</string>
-    <string name="title_activity_single_people">SinglePeopleActivity</string>
+    <string name="title_activity_single_people">People</string>
     <string name="title_activity_single_actualite">Actualité</string>
-    <string name="title_activity_single_faits_divers">SingleFaitsDiversActivity</string>
+    <string name="title_activity_single_faits_divers">Faits divers</string>
     <string name="dialog_about"><![CDATA[
      <b>LaRue Info</b> est développée par:<br/><br/>
 
     <b>Rachid Ali</b><br/>
-    <a href=\'https://facebook.com/akindeoladuku.adekunlerachid\'>Facebook</a>&nbsp;&nbsp;<br/><br/>
+    <a href=\'https://facebook.com/akindeoladuku.adekunlerachid\'>Facebook</a>&nbsp;&nbsp;
+    <a href=\'https://github.com/geniuskrazy\'>GitHub</a>&nbsp;&nbsp;<br/><br/>
 
     <b>Seth-Pharès Gnavo</b><br/>
     <a href=\'https://about.me/sgnavo\'>Site web</a>&nbsp;&nbsp;
-    <a href=\'https://twitter.com/pharesgnavo\'>Twitter</a>&nbsp;&nbsp;
+    <a href=\'https://twitter.com/sethgnavo\'>Twitter</a>&nbsp;&nbsp;
     <a href=\'https://facebook.com/sgnavogollar\'>Facebook</a>&nbsp;&nbsp;
-    <a href=\'https://github.com/sgnavo\'>GitHub</a>&nbsp;&nbsp;
+    <a href=\'https://github.com/sethgnavo\'>GitHub</a>&nbsp;&nbsp;
     <a href=\'https://google.com/+SethPharèsGnavo7\'>Google+</a>&nbsp;&nbsp;<br/><br/>
 
-    Version 0.9<br/>
+    Version 0.1.0<br/>
     Copyright \u00a9 2016 <b>Align Labs</b>.<br/><br/>
 
     <b>Contacts Dev:</b><br/>

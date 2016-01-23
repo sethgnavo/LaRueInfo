@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -24,12 +25,10 @@ public class SinglePeopleActivity extends AppCompatActivity {
     private Firebase backend;
     TextView  articleTitle, rawHtmlContent,authorName,sourceName,issueTime;
     String share;
-    String ti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(getApplicationContext());
         setContentView(R.layout.activity_single_people);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,9 +68,9 @@ public class SinglePeopleActivity extends AppCompatActivity {
                         System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 
                 articleTitle.setText(post.getArticleTitle());
-//                rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
+                rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
                 authorName.setText(post.getAuthorName());
-                sourceName.setText(post.getSourceName());
+                sourceName.setText(Html.fromHtml(post.getSourceName()));
                 issueTime.setText(charTtime);
                 share = post.getArticleTitle();
             }

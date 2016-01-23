@@ -2,12 +2,15 @@ package dev.larueinfo.alignlabsbenin.Single;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import dev.larueinfo.alignlabsbenin.FaitsDiversFragment;
 import dev.larueinfo.alignlabsbenin.Models.Article;
@@ -22,15 +26,13 @@ import dev.larueinfo.alignlabsbenin.R;
 
 public class SingleFaitsDiversActivity extends AppCompatActivity {
     private Firebase backend;
-    TextView  articleTitle, rawHtmlContent,authorName,sourceName,issueTime;
-   // ImageView imagePrincipale,img_pTitre1,img_pTitre2,img_pTitre3;
+    TextView articleTitle, rawHtmlContent, authorName, sourceName, issueTime;
+    private ImageView graphicDescription;
     String share;
-    String ti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(getApplicationContext());
         setContentView(R.layout.activity_single_people);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,7 +53,7 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
                 startActivity(sendIntent);
             }
         });
-        backend = new Firebase("https://yadialigninfo.firebaseio.com/Faitdivers/"+date);
+        backend = new Firebase("https://yadialigninfo.firebaseio.com/Faitdivers/" + date);
         backend.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -61,17 +63,29 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
                 authorName = (TextView) findViewById(R.id.author_name);
                 sourceName = (TextView) findViewById(R.id.source_name);
                 issueTime = (TextView) findViewById(R.id.issue_time);
+                graphicDescription = (ImageView) findViewById(R.id.graphicDescription);
 
                 //time setup
-                CharSequence charTtime = DateUtils.getRelativeTimeSpanString(
+                CharSequence charTime = DateUtils.getRelativeTimeSpanString(
                         Long.parseLong(String.valueOf(post.getIssueTime())),
                         System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 
                 articleTitle.setText(post.getArticleTitle());
-//                rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
+                rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
                 authorName.setText(post.getAuthorName());
-                sourceName.setText(post.getSourceName());
-                issueTime.setText(charTtime);
+                if (post.getSourceName() != null) {
+                    sourceName.setText(Html.fromHtml(post.getSourceName()));
+                }
+                issueTime.setText(charTime);
+                if (post.getGraphicDescription() != "") {
+                    Picasso.with(getApplication())
+                            .load(post.getGraphicDescription())
+                            .placeholder(android.R.drawable.ic_menu_view)
+                            .error(android.R.drawable.ic_menu_view)
+                            .resize(120, 120)
+                            .into(graphicDescription);
+                }
+
                 share = post.getArticleTitle();
             }
 
@@ -82,4 +96,19 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
         });
     }
 
+    private class ImageGetter implements Html.ImageGetter {
+        public Drawable getDrawable(String source) {
+            int id;
+            if (source.equals("stack.jpg")) {
+                id = R.drawable.ic_launcher;
+            } else if (source.equals("overflow.jpg")) {
+                id = R.drawable.img_drawer;
+            } else {
+                return null;
+            }
+            Drawable d = getResources().getDrawable(id);
+            d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+            return d;
+        }
+    }
 }

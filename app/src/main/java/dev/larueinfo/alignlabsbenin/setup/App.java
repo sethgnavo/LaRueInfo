@@ -5,7 +5,7 @@ import android.app.Application;
 import com.firebase.client.Firebase;
 
 /**
- * @author Seth-Pharès Gnavo
+ * @author Seth-Pharès Gnavo (sethgnavo)
  */
 public class App extends Application {
     @Override

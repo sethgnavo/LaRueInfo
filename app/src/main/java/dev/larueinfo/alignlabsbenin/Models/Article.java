@@ -3,7 +3,7 @@ package dev.larueinfo.alignlabsbenin.Models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * @author Seth-Pharès Gnavo
+ * @author Seth-Pharès Gnavo (sethgnavo)
  */
 
 /*

@@ -18,15 +18,15 @@
             android:id="@+id/article_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center_horizontal"
             android:text="Lancement d&apos;un nouveau site"
             android:textColor="#2176d2"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="bold"
-            android:maxLines="2" />
+            android:maxLines="3"
+            android:ellipsize="end" />
 
         <View
             android:id="@+id/separator"

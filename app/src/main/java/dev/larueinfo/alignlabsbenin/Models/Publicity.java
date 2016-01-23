@@ -1,7 +1,7 @@
 package dev.larueinfo.alignlabsbenin.Models;
 
 /**
- * @author Seth-Pharès Gnavo
+ * @author Seth-Pharès Gnavo (sethgnavo)
  */
 public class Publicity {
     //image, contenu, date, nom de l'entreprise
