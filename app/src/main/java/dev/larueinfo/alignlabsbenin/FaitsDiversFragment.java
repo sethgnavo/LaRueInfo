@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -105,10 +106,10 @@ public class FaitsDiversFragment extends Fragment {
                 ((TextView) view.findViewById(R.id.titreInfoS)).setText(o.getArticleTitle());
                 ((TextView) view.findViewById(R.id.grdTitreInfo)).setText(o.getArticleDescription());
                 TextView time = (TextView) view.findViewById(R.id.dateInfo);
-                //final CharSequence date_post = DateUtils.getRelativeTimeSpanString(
-                //        Long.parseLong(String.valueOf(o.getTime())),
-                //       System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-                //time.setText(date_post);
+                final CharSequence date_post = DateUtils.getRelativeTimeSpanString(
+                        Long.parseLong(String.valueOf(o.getIssueTime())),
+                        System.currentTimeMillis(), DateUtils.YEAR_IN_MILLIS);
+                time.setText(date_post);
             }
         };
         list.setAdapter(listAdapter);
