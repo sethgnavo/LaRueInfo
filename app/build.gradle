@@ -39,5 +39,7 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.3@aar') {//update to latest version 4.6.3
         transitive = true
     }
+    //compile 'com.github.Neutral:RemoteAppControl:1.0.0'
+    //compile 'com.github.sethgnavo:centroid:0.0.1'
 
 }
