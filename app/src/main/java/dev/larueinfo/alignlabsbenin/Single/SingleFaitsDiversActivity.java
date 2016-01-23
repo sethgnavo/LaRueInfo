@@ -26,7 +26,7 @@ import dev.larueinfo.alignlabsbenin.R;
 
 public class SingleFaitsDiversActivity extends AppCompatActivity {
     private Firebase backend;
-    TextView articleTitle, rawHtmlContent, authorName, sourceName, issueTime;
+    private TextView articleTitle, articleDescription, rawHtmlContent, authorName, sourceName, issueTime;
     private ImageView graphicDescription;
     String share;
 
@@ -40,7 +40,8 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String date = intent.getStringExtra(FaitsDiversFragment.KEY);
-        final Typeface custFace = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
+        final Typeface contentFont = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
+        final Typeface descriptionFont = Typeface.createFromAsset(getAssets(), "fonts/hurtm.otf");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +49,7 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, share + "\n" + "Rdv sur votre Application Buzzlive dans la rubrique Actualité pour lire la suite");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, share + "\n" + "Rdv sur votre Application Buzzlive dans la rubrique Divers pour lire la suite");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }
@@ -59,22 +60,30 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 Article post = snapshot.getValue(Article.class);
                 articleTitle = (TextView) findViewById(R.id.article_title);
+                articleDescription = (TextView) findViewById(R.id.article_description);
                 rawHtmlContent = (TextView) findViewById(R.id.raw_html_content);
                 authorName = (TextView) findViewById(R.id.author_name);
                 sourceName = (TextView) findViewById(R.id.source_name);
                 issueTime = (TextView) findViewById(R.id.issue_time);
-                graphicDescription = (ImageView) findViewById(R.id.graphicDescription);
+                graphicDescription = (ImageView) findViewById(R.id.graphic_description);
 
                 //time setup
                 CharSequence charTime = DateUtils.getRelativeTimeSpanString(
                         Long.parseLong(String.valueOf(post.getIssueTime())),
                         System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 
+//                String time = DateUtils.formatDateTime(getApplicationContext(),
+//                        Long.parseLong(String.valueOf(post.getIssueTime())),
+//                        DateUtils.FORMAT_SHOW_TIME);
+
                 articleTitle.setText(post.getArticleTitle());
+                articleDescription.setText(post.getArticleDescription());
                 rawHtmlContent.setText(Html.fromHtml(post.getRawHtmlContent()));
+                rawHtmlContent.setTypeface(contentFont);
+                articleDescription.setTypeface(descriptionFont);
                 authorName.setText(post.getAuthorName());
                 if (post.getSourceName() != null) {
-                    sourceName.setText(Html.fromHtml(post.getSourceName()));
+                    sourceName.setText(post.getSourceName());
                 }
                 issueTime.setText(charTime);
                 if (post.getGraphicDescription() != "") {
