@@ -14,30 +14,38 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:background="#9e9e9e"
-            android:layout_height="1dp"
-            android:id="@+id/line_top" />
-
         <ImageView
-            android:id="@+id/graphicDescription"
+            android:id="@+id/graphic_description"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="centerCrop" />
+
         <View
             android:layout_width="match_parent"
             android:background="#9e9e9e"
             android:layout_height="1dp"
+            android:id="@+id/line_top"
+            android:layout_below="@+id/graphic_description"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/article_description"
+            android:layout_below="@+id/line_top"
+            android:layout_marginTop="4dp" />
+        <View
+            android:layout_width="match_parent"
+            android:background="#9e9e9e"
+            android:layout_height="1dp"
+            android:layout_below="@+id/article_description"
             android:id="@+id/line_bottom"
-            android:layout_below="@+id/graphicDescription"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="4dp" />
 
         <TextView
             android:id="@+id/raw_html_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="content"
             android:layout_below="@+id/line_bottom"
             android:layout_marginTop="16dp"
             android:textColor="#212121"
@@ -49,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/raw_html_content"
             android:gravity="left|bottom"
-            android:text="source"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:layout_marginTop="16dp" />
     </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>
