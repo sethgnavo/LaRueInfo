@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author Seth-Pharès Gnavo (sethgnavo)
  */
 
-/*
- * Cette classe n'est pas encore implémentée. Elle va remplacer la classe Model dans les rochains builds.
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Article {
     private String articleTitle;
