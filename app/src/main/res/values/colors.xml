@@ -16,4 +16,6 @@
     <color name="colorPrimary2">#ff9800</color>
     <color name="colorPrimaryDark2">#f57c00</color>
     <color name="colorAccent2">#ffab40</color>
+    <color name="navigationBarColor">#ffa726</color>
+    <color name="windowBackground">#e0e0e0</color>
 </resources>

@@ -22,7 +22,7 @@ import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.Models.Article;
+import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.Single.SingleFaitsDiversActivity;
 
 public class FaitsDiversFragment extends Fragment {
@@ -100,8 +100,8 @@ public class FaitsDiversFragment extends Fragment {
                 ImageView img = (ImageView) view.findViewById(R.id.avatarInfo);
                 Picasso.with(getActivity())
                         .load(o.getGraphicDescription())
-                        .placeholder(android.R.drawable.ic_menu_view)
-                        .error(android.R.drawable.ic_menu_view)
+                        .placeholder(R.drawable.ic_image_black_48dp)
+                        .error(R.drawable.ic_broken_image_black_48dp)
                         .into(img);
                 ((TextView) view.findViewById(R.id.titreInfoS)).setText(o.getArticleTitle());
                 ((TextView) view.findViewById(R.id.grdTitreInfo)).setText(o.getArticleDescription());

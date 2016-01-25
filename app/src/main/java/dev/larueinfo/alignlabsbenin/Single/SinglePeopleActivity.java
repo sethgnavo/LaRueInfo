@@ -17,7 +17,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
-import dev.larueinfo.alignlabsbenin.Models.Article;
+import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.PeopleFragment;
 import dev.larueinfo.alignlabsbenin.R;
 
@@ -46,7 +46,7 @@ public class SinglePeopleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, share + "\n" + "Rdv sur votre Application LaRue Info dans la rubrique Actualité pour lire la suite ou télécharger sur playstore");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, share + "\n" + "Rdv sur votre Application LaRue Info dans la rubrique People pour lire la suite ou télécharger sur playstore");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
             }

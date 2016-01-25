@@ -21,7 +21,7 @@ import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import dev.larueinfo.alignlabsbenin.FaitsDiversFragment;
-import dev.larueinfo.alignlabsbenin.Models.Article;
+import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.R;
 
 public class SingleFaitsDiversActivity extends AppCompatActivity {
@@ -89,9 +89,9 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
                 if (post.getGraphicDescription() != "") {
                     Picasso.with(getApplication())
                             .load(post.getGraphicDescription())
-                            .placeholder(android.R.drawable.ic_menu_view)
-                            .error(android.R.drawable.ic_menu_view)
-                            .resize(120, 120)
+                            .placeholder(R.drawable.ic_image_black_48dp)
+                            .error(R.drawable.ic_broken_image_black_48dp)
+                            //.resize(120, 120)
                             .into(graphicDescription);
                 }
 

@@ -21,7 +21,7 @@ import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.Models.Article;
+import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.Single.SingleActualiteActivity;
 
 public class ActualiteFragment extends Fragment {

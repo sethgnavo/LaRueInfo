@@ -17,7 +17,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import dev.larueinfo.alignlabsbenin.ActualiteFragment;
-import dev.larueinfo.alignlabsbenin.Models.Article;
+import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.R;
 
 public class SingleActualiteActivity extends AppCompatActivity {
