@@ -27,7 +27,7 @@ public class AboutDialog extends DialogFragment {
 
         return new MaterialDialog.Builder(getActivity())
                 .iconRes(R.drawable.ic_launcher)
-                .title("A propos")
+                .title("À propos")
                 .content(Html.fromHtml(getString(R.string.dialog_about)))
                 .positiveText("ok")
                 .contentLineSpacing(1.6f)
