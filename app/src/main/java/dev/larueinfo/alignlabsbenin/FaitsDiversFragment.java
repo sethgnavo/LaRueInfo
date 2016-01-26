@@ -19,11 +19,12 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.firebase.client.Firebase;
+import com.firebase.client.Query;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.Single.SingleFaitsDiversActivity;
+import dev.larueinfo.alignlabsbenin.models.Article;
 
 public class FaitsDiversFragment extends Fragment {
     private Firebase backend;
@@ -33,68 +34,34 @@ public class FaitsDiversFragment extends Fragment {
     String str;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private ViewFlipper mViewFlippe,mViewFlipperA;
+    private ViewFlipper mViewFlippe, mViewFlipperA;
     private Animation.AnimationListener mAnimationListener;
     private Context mContext;
-    public ImageView img1,img2,img3;
-    public TextView txt1,txt2,txt3;
+    public ImageView img1, img2, img3;
+    public TextView txt1, txt2, txt3;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  Firebase.setAndroidContext(getActivity());
+        //  Firebase.setAndroidContext(getActivity());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         backend = new Firebase("https://yadialigninfo.firebaseio.com/Faitdivers");
+        //Firebase ref = backend.child("issueTime");
+        Query queryRef = backend.orderByChild("issueTime");
+        //Query queryRef = backend.orderByChild("issueTime").startAt().limitToLast(15);
 
-        /*@SuppressWarnings("deprecation")
-        final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
-        mContext = getActivity();
-        mViewFlipperA = (ViewFlipper) getActivity().findViewById(R.id.view_flipper);
-        mViewFlipperA.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(final View view, final MotionEvent event) {
-                detector.onTouchEvent(event);
-                return true;
-            }
-        });
-        img1 = (ImageView)view.findViewById(R.id.viewer1);
+
+        img1 = (ImageView) view.findViewById(R.id.viewer1);
         img1.setImageResource(R.mipmap.anonn);
-        txt1 = (TextView)view.findViewById(R.id.text_pub_1);
-        txt1.setText("Vos Pub ici qui défilent ! Contacter le 64967477");
-        img2 = (ImageView)view.findViewById(R.id.viewer2);
-        img2.setImageResource(R.mipmap.logo);
-        img3 = (ImageView)view.findViewById(R.id.viewer3);
-        img3.setImageResource(R.mipmap.alissa2);
-
-        //sets auto flipping
-        mViewFlipperA.setAutoStart(true);
-        mViewFlipperA.setFlipInterval(4000);
-        mViewFlipperA.startFlipping();
-
-        //animation listener
-        mAnimationListener = new Animation.AnimationListener() {
-            public void onAnimationStart(Animation animation) {
-                //animation started event
-            }
-
-            public void onAnimationRepeat(Animation animation) {
-            }
-
-            public void onAnimationEnd(Animation animation) {
-                //TODO animation stopped event
-            }
-        };*/
-        img1 = (ImageView)view.findViewById(R.id.viewer1);
-        img1.setImageResource(R.mipmap.anonn);
-        txt1 = (TextView)view.findViewById(R.id.text_pub_1);
+        txt1 = (TextView) view.findViewById(R.id.text_pub_1);
         txt1.setText("Vos Pub ici qui défilent ! Contacter le 64967477");
         list = (ListView) view.findViewById(R.id.newsListView);
-        listAdapter = new FirebaseListAdapter<Article>(getActivity(), Article.class, R.layout.items, backend) {
+        listAdapter = new FirebaseListAdapter<Article>(getActivity(), Article.class, R.layout.items, queryRef) {
             @Override
             protected void populateView(View view, Article o) {
                 ImageView img = (ImageView) view.findViewById(R.id.avatarInfo);
@@ -111,8 +78,10 @@ public class FaitsDiversFragment extends Fragment {
                         System.currentTimeMillis(), DateUtils.YEAR_IN_MILLIS);
                 time.setText(date_post);
             }
+
         };
         list.setAdapter(listAdapter);
+        // list.setStackFromBottom(true);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -122,8 +91,11 @@ public class FaitsDiversFragment extends Fragment {
                 startActivity(intSingle);
             }
         });
+
         return view;
+
     }
+
     class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {

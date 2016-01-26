@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,8 +22,8 @@ import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.squareup.picasso.Picasso;
 
-import dev.larueinfo.alignlabsbenin.models.Article;
 import dev.larueinfo.alignlabsbenin.Single.SinglePeopleActivity;
+import dev.larueinfo.alignlabsbenin.models.Article;
 
 public class PeopleFragment extends Fragment {
     private Firebase backend;
@@ -32,17 +33,17 @@ public class PeopleFragment extends Fragment {
     String str;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private ViewFlipper mViewFlippe,mViewFlipperA;
+    private ViewFlipper mViewFlippe, mViewFlipperA;
     private Animation.AnimationListener mAnimationListener;
     private Context mContext;
-    public ImageView img1,img2,img3;
-    public TextView txt1,txt2,txt3;
+    public ImageView img1, img2, img3;
+    public TextView txt1, txt2, txt3;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  Firebase.setAndroidContext(getActivity());
+        //  Firebase.setAndroidContext(getActivity());
     }
 
     @Override
@@ -88,27 +89,27 @@ public class PeopleFragment extends Fragment {
                 //TODO animation stopped event
             }
         };*/
-        img1 = (ImageView)view.findViewById(R.id.viewer1);
+        img1 = (ImageView) view.findViewById(R.id.viewer1);
         img1.setImageResource(R.mipmap.anonn);
-        txt1 = (TextView)view.findViewById(R.id.text_pub_1);
+        txt1 = (TextView) view.findViewById(R.id.text_pub_1);
         txt1.setText("Vos Pub ici qui défilent ! Contacter le 64967477");
         list = (ListView) view.findViewById(R.id.newsListView);
-        listAdapter = new FirebaseListAdapter<Article>(getActivity(),Article.class, R.layout.items, backend) {
+        listAdapter = new FirebaseListAdapter<Article>(getActivity(), Article.class, R.layout.items, backend) {
             @Override
             protected void populateView(View view, Article o) {
                 ImageView img = (ImageView) view.findViewById(R.id.avatarInfo);
                 Picasso.with(getActivity())
                         .load(o.getGraphicDescription())
-                        .placeholder(android.R.drawable.ic_menu_view)
-                        .error(android.R.drawable.ic_menu_view)
+                        .placeholder(R.drawable.ic_image_black_48dp)
+                        .error(R.drawable.ic_broken_image_black_48dp)
                         .into(img);
                 ((TextView) view.findViewById(R.id.titreInfoS)).setText(o.getArticleTitle());
                 ((TextView) view.findViewById(R.id.grdTitreInfo)).setText(o.getArticleDescription());
                 TextView time = (TextView) view.findViewById(R.id.dateInfo);
-                //final CharSequence date_post = DateUtils.getRelativeTimeSpanString(
-                //        Long.parseLong(String.valueOf(o.getTime())),
-                 //       System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
-                //time.setText(date_post);
+                final CharSequence date_post = DateUtils.getRelativeTimeSpanString(
+                        Long.parseLong(String.valueOf(o.getIssueTime())),
+                        System.currentTimeMillis(), DateUtils.YEAR_IN_MILLIS);
+                time.setText(date_post);
             }
         };
         list.setAdapter(listAdapter);
@@ -123,32 +124,33 @@ public class PeopleFragment extends Fragment {
         });
         return view;
     }
-class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        try {
-            // right to left swipe
-            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                mViewFlipperA.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
-                mViewFlipperA.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
-                // controlling animation
-                mViewFlipperA.getInAnimation().setAnimationListener(mAnimationListener);
-                mViewFlipperA.showNext();
-                return true;
-            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                mViewFlipperA.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
-                mViewFlipperA.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_out));
-                // controlling animation
-                mViewFlipperA.getInAnimation().setAnimationListener(mAnimationListener);
-                mViewFlipperA.showPrevious();
-                return true;
+
+    class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            try {
+                // right to left swipe
+                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    mViewFlipperA.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
+                    mViewFlipperA.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
+                    // controlling animation
+                    mViewFlipperA.getInAnimation().setAnimationListener(mAnimationListener);
+                    mViewFlipperA.showNext();
+                    return true;
+                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    mViewFlipperA.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
+                    mViewFlipperA.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_out));
+                    // controlling animation
+                    mViewFlipperA.getInAnimation().setAnimationListener(mAnimationListener);
+                    mViewFlipperA.showPrevious();
+                    return true;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
-}
 }
