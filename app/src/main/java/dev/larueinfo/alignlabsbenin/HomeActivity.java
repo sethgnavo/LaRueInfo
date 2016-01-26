@@ -31,6 +31,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import dev.larueinfo.alignlabsbenin.dialogs.AboutDialog;
+import dev.larueinfo.alignlabsbenin.dialogs.HelpDialog;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -217,13 +218,11 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Handle menu actions
         if (id == R.id.help) {
-            return true;
+            HelpDialog.show(this);
         }
         if (id == R.id.info) {
-//            Intent intSingle = new Intent(this, AboutActivity.class);
-//            startActivity(intSingle);
             AboutDialog.show(this);
         }
 
