@@ -2,7 +2,6 @@ package dev.larueinfo.alignlabsbenin.Single;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +20,12 @@ import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import dev.larueinfo.alignlabsbenin.FaitsDiversFragment;
-import dev.larueinfo.alignlabsbenin.models.Article;
+import dev.larueinfo.alignlabsbenin.ImageViewActivity;
 import dev.larueinfo.alignlabsbenin.R;
+import dev.larueinfo.alignlabsbenin.models.Article;
 
 public class SingleFaitsDiversActivity extends AppCompatActivity {
+    public static final String EXTRA_DATA = "dev.buzzlivemessenger.alignlabsbenin.Single.EXTRA_IMAGE";
     private Firebase backend;
     private TextView articleTitle, articleDescription, rawHtmlContent, authorName, sourceName, issueTime;
     private ImageView graphicDescription;
@@ -58,7 +59,7 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
         backend.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Article post = snapshot.getValue(Article.class);
+                final Article post = snapshot.getValue(Article.class);
                 articleTitle = (TextView) findViewById(R.id.article_title);
                 articleDescription = (TextView) findViewById(R.id.article_description);
                 rawHtmlContent = (TextView) findViewById(R.id.raw_html_content);
@@ -91,9 +92,21 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
                             .load(post.getGraphicDescription())
                             .placeholder(R.drawable.ic_image_black_48dp)
                             .error(R.drawable.ic_broken_image_black_48dp)
-                            //.resize(120, 120)
                             .into(graphicDescription);
                 }
+
+                //Handle show zoomable graphic description
+                graphicDescription.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String str = new String();
+                        str = post.getGraphicDescription();
+                        Intent o = new Intent(getApplicationContext(), ImageViewActivity.class);
+                        o.putExtra(EXTRA_DATA, str);
+                        startActivity(o);
+                    }
+                });
+
 
                 share = post.getArticleTitle();
             }
@@ -103,21 +116,5 @@ public class SingleFaitsDiversActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "The read failed: " + firebaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private class ImageGetter implements Html.ImageGetter {
-        public Drawable getDrawable(String source) {
-            int id;
-            if (source.equals("stack.jpg")) {
-                id = R.drawable.ic_launcher;
-            } else if (source.equals("overflow.jpg")) {
-                id = R.drawable.img_drawer;
-            } else {
-                return null;
-            }
-            Drawable d = getResources().getDrawable(id);
-            d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-            return d;
-        }
     }
 }
