@@ -22,7 +22,7 @@
     <a href=\'https://github.com/sethgnavo\'>GitHub</a>&nbsp;&nbsp;
     <a href=\'https://google.com/+SethPharèsGnavo7\'>Google+</a>&nbsp;&nbsp;<br/><br/>
 
-    Version 0.2.0<br/>
+    Version 0.3.1<br/>
     Copyright \u00a9 2016 <b>Align Labs</b>.<br/><br/>
 
     <b>Contacts Dev:</b><br/>
@@ -30,4 +30,13 @@
     <b>Open source:</b><br/>
     <a href=\'https://github.com/afollestad/material-dialogs\'>Material Dialogs</a><br/>
     <a href=\'https://github.com/mikepenz/Material Drawer\'>Material Drawer</a>]]></string>
+    <string name="dialog_help">
+        <![CDATA[
+        Cette appliction est mode de test;<b> ce n\'est pas encore la version finale</b>. Si vous utilisez cette application, alors vous faites partie des bêta testeurs, pour l\'am\éliorer \à travers vos suggestions avant la version finale.<br/><br/>
+
+        <b>Info:<br/>
+        +229 64967477<br/>
+        +229 64608942</b>
+    ]]>
+    </string>
 </resources>
