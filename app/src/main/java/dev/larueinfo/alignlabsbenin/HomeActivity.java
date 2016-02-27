@@ -24,20 +24,19 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.holder.BadgeStyle;
-import com.mikepenz.materialdrawer.holder.StringHolder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import dev.larueinfo.alignlabsbenin.dialogs.AboutDialog;
+import dev.larueinfo.alignlabsbenin.dialogs.HelpDialog;
 
 public class HomeActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
-    private Intent intent;
     private Toolbar toolbar;
     private AccountHeader headerResult = null;
     private Drawer result = null;
@@ -65,14 +64,17 @@ public class HomeActivity extends AppCompatActivity {
         //setup the primary items
         PrimaryDrawerItem homeDrawer = new PrimaryDrawerItem().withName("Accueil").withIdentifier(1);
         //add inscription
-        PrimaryDrawerItem categoriesDrawer = new PrimaryDrawerItem().withName("Catégories").withIdentifier(2);
+        PrimaryDrawerItem videosDrawer = new PrimaryDrawerItem().withName("Vidéos").withIdentifier(2);
+        PrimaryDrawerItem modeDrawer = new PrimaryDrawerItem().withName("Mode & Beauté").withIdentifier(3);
+        PrimaryDrawerItem docsDrawer = new PrimaryDrawerItem().withName("Allô Doc !").withIdentifier(4);
+        PrimaryDrawerItem emploiDrawer = new PrimaryDrawerItem().withName("PK'emplois").withIdentifier(5);
         PrimaryDrawerItem favouritesDrawer = new PrimaryDrawerItem().withName("Favoris").withBadgeStyle(new BadgeStyle()
                 .withTextColor(Color.WHITE)
-                .withColorRes(R.color.colorAccent)).withIdentifier(3);
-
+                .withColorRes(R.color.colorAccent)).withIdentifier(6);
         //setup the secondary items
-        SecondaryDrawerItem settingsDrawer = new SecondaryDrawerItem().withName("Paramètres").withIdentifier(4);
-        SecondaryDrawerItem helpFeedbackDrawer = new SecondaryDrawerItem().withName("Aide et feedback").withIdentifier(5);
+        SecondaryDrawerItem settingsDrawer = new SecondaryDrawerItem().withName("Paramètres").withIdentifier(7);
+        SecondaryDrawerItem SignDrawer = new SecondaryDrawerItem().withName("Me connecter").withIdentifier(8);
+        SecondaryDrawerItem helpFeedbackDrawer = new SecondaryDrawerItem().withName("Aide et feedback").withIdentifier(9);
 
         //setup the account header
         headerResult = new AccountHeaderBuilder()
@@ -96,25 +98,31 @@ public class HomeActivity extends AppCompatActivity {
                 .withAccountHeader(headerResult)
                 .withSavedInstance(s)
                 .withShowDrawerOnFirstLaunch(true)
-                .addDrawerItems(homeDrawer, categoriesDrawer, favouritesDrawer, new DividerDrawerItem(), settingsDrawer, helpFeedbackDrawer)
+                .addDrawerItems(homeDrawer, videosDrawer, modeDrawer, docsDrawer, emploiDrawer, favouritesDrawer, new DividerDrawerItem(), settingsDrawer, SignDrawer, helpFeedbackDrawer)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        long id = drawerItem.getIdentifier();//pour simplifier le code
                         if (drawerItem != null) {
-                            Intent intent;
-                            if (drawerItem.getIdentifier() == 1) {
+                            if (id == 1) {
                                 //nothing yet
-                            } else if (drawerItem.getIdentifier() == 2) {
-                                Toast.makeText(getApplicationContext(), "Rubrique en construction!", Toast.LENGTH_LONG).show();
-                            } else if (drawerItem.getIdentifier() == 3) {
-                                Toast.makeText(getApplicationContext(), "Rubrique en construction!", Toast.LENGTH_LONG).show();
-                            } else if (drawerItem.getIdentifier() == 4) {
-                                Toast.makeText(getApplicationContext(), "Rubrique en construction!", Toast.LENGTH_LONG).show();
-                            } else if (drawerItem.getIdentifier() == 5) {
+                            } else if (id == 2) {
+                                startActivity(new Intent(getApplicationContext(), VideoActivity.class));
+                            } else if (id == 3) {
+                                startActivity(new Intent(getApplicationContext(), ModeActivity.class));
+                            } else if (id == 4) {
+                                startActivity(new Intent(getApplicationContext(), DocActivity.class));
+                            } else if (id == 5) {
+                                startActivity(new Intent(getApplicationContext(), EmploiActivity.class));
+                            } else if (id == 6) {
+                                startActivity(new Intent(getApplicationContext(), FavorisActivity.class));
+                            } else if (id == 7) {
+                                startActivity(new Intent(getApplicationContext(), SignActivity.class));
+                            } else if (id == 8) {
                                 Toast.makeText(getApplicationContext(), "Veuillez contacter le 64967477", Toast.LENGTH_LONG).show();
+                            } else if (id == 9) {
+                                startActivity(new Intent(getApplicationContext(), FavorisActivity.class));
                             }
-                        } else {//implemented in-house
-                            Toast.makeText(getApplicationContext(), "Not working !", Toast.LENGTH_LONG).show();
                         }
 
                         return false;
@@ -124,7 +132,6 @@ public class HomeActivity extends AppCompatActivity {
                 .build();
 
         result.setSelection(homeDrawer);
-        result.updateBadge(3, new StringHolder(10 + " news"));
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -217,13 +224,11 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //Handle menu actions
         if (id == R.id.help) {
-            return true;
+            HelpDialog.show(this);
         }
         if (id == R.id.info) {
-//            Intent intSingle = new Intent(this, AboutActivity.class);
-//            startActivity(intSingle);
             AboutDialog.show(this);
         }
 
@@ -239,5 +244,4 @@ public class HomeActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
 }
