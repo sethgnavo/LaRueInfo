@@ -17,7 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <include layout="@layout/article_header" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -29,6 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_menu_share" />
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginRight="@dimen/fab_margin_right"
+        android:src="@android:drawable/ic_menu_edit"
+        app:backgroundTint="#ff1744" />
 
 </android.support.design.widget.CoordinatorLayout>

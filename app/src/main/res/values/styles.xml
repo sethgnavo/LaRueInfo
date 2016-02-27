@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent2</item>
     </style>
 
-    <style name="MyCustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="MyCustomToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimary</item>
     </style>
@@ -18,7 +18,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/colorPrimary</item>
     </style>
 
