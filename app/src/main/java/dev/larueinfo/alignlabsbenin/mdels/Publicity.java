@@ -5,6 +5,7 @@ package dev.larueinfo.alignlabsbenin.Models;
  */
 public class Publicity {
     //image, contenu, date, nom de l'entreprise
+    //not implemented yet
     private String adPictureUrl;
     private String adTitle;
     private String adAuthorName;
