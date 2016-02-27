@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="dev.larueinfo.alignlabsbenin.SignActivity"
+    tools:showIn="@layout/activity_sign">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/usernameField"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Nom d&apos;utilisateur" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/mailorphoneField"
+        android:layout_below="@+id/usernameField"
+        android:layout_alignLeft="@+id/usernameField"
+        android:layout_alignStart="@+id/usernameField"
+        android:hint="Téléphone ou E-mail" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:id="@+id/linearLayout2"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/usernameField"
+        android:layout_marginTop="41dp"
+        android:layout_alignEnd="@+id/usernameField">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer"
+        android:id="@+id/submitSign"
+        android:layout_below="@+id/mailorphoneField"
+        android:layout_centerHorizontal="true"
+        android:background="#f7138908"
+        android:padding="4dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="176dp"
+        android:layout_height="120dp"
+        android:id="@+id/userAvatar"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center"
+        app:border_color="@color/accent"
+        app:border_width="2dp"
+        android:layout_above="@+id/usernameField"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp" />
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/partage"
+        android:title="Partager"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/favoris"
+        android:title="Favoris"
+        android:icon="@android:drawable/btn_star_big_on"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/like"
+        android:title="Favoris"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        app:showAsAction="always" />
+</menu>
