@@ -69,7 +69,7 @@ public class ActualiteFragment extends Fragment {
         img3 = (ImageView)view.findViewById(R.id.viewer3);
         img3.setImageResource(R.mipmap.alissa2);
 
-        //sets auto flipping
+        //sets auto flipping to the swipe view
         mViewFlipperA.setAutoStart(true);
         mViewFlipperA.setFlipInterval(4000);
         mViewFlipperA.startFlipping();
